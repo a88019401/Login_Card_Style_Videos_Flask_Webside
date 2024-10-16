@@ -1,0 +1,115 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+QUIZ :)
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<!--參考出自https://www.youtube.com/watch?v=C7NsIRhoWuE&ab_channel=KevinBriggs-->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/video_b2.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/h2u1videoAndCaption_botton.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz_main.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">國中英語影片</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                <li><a href="#">當前使用者: {{ name }}</a></li>
+                <li><a href="{{ url_for('logout') }}">登出</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<h1>歡迎光臨，請逐一按下字幕按鈕，練習對話。</h1>
+
+
+<div id="quiz" name="quiz">
+    <div>
+        <div class="allVideo">
+            <video controls id="video" poster="">
+                <source src="{{ url_for('static', filename='video/HLB2U1Conversation.mp4') }}" type="video/mp4" />
+                <source src="" type="video/webm" />
+                <source src="" type="video/ogg" />
+                <source src="" type="video/3gp" />
+                <!--<track  default src="./video/KHB3L1.srt" kind="subtitle" srclang="en-US" label="English" /> -->
+
+                <!--<track default src="{{ url_for('static', filename='video/KHB3L1.vtt') }}" kind="captions" srclang="en"
+                    label="English Captions" />-->
+
+                <p><a href="" download>Download the Video</a></p>
+            </video><br />
+
+            <!--<button id="btnPlay" class="control">Play</button><br/>
+        <button id="btnPaws" class="control">Pause</button><br/>
+        <button id="btnStop" class="control">Stop</button><br/>
+        <button id="btnRew" class="control">Rewind</button><br/>
+        <button id="btnFF" class="control">Fast-to</button><br/>-->
+        </div>
+
+
+
+    </div>
+
+    <input id="button" type="button" value="I'm finished!" onclick="javascript:location.href='./index_login'">
+</div>
+
+<div id="before_submit">
+    <div class="caption">
+        <!--target="_blank" 另開視窗 -->        
+        <button id="H1btn1" class="control">00:03</button><br /><a class="sub-word">Do you like sports, Zac?</a><br />
+        <button id="H1btn2" class="control">00:06</button><br /><a class="sub-word">Yes, I do. I like basketball very much.</a><br />
+        <button id="H1btn3" class="control">00:10</button><br /><a class="sub-word">I'm on the school team. I practice basketball after school every day.</a><br />
+        <button id="H1btn4" class="control">00:16</button><br /><a class="sub-word">Do you also play basketball on weekends?</a><br />
+        <button id="H1btn5" class="control">00:19</button><br /><a class="sub-word">No, I don't.</a><br />
+        <button id="H1btn6" class="control">00:21</button><br /><a class="sub-word">Then what do you do on weekends?</a><br />
+        <button id="H1btn7" class="control">00:24</button><br /><a class="sub-word">On Saturdays, I read at home.</a><br />
+        <button id="H1btn8" class="control">00:26</button><br /><a class="sub-word">On Sundays, I swim with my friends.</a><br />
+        <button id="H1btn9" class="control">00:30</button><br /><a class="sub-word">I also swim on weekends.</a><br />
+        <button id="H1btn10" class="control">00:32</button><br /><a class="sub-word">Can I join you guys next time?</a><br />
+        <button id="H1btn11" class="control">00:34</button><br /><a class="sub-word">Sure.</a><br />
+        <button id="H1btn12" class="control">00:36</button><br /><a class="sub-word">Hey, look at that boy. He has brown eyes and nice hair.</a><br />
+        <button id="H1btn13" class="control">00:40</button><br /><a class="sub-word">He's cute.</a><br />
+        <button id="H1btn14" class="control">00:42</button><br /><a class="sub-word">That's Shin.</a><br />
+        <button id="H1btn15" class="control">00:44</button><br /><a class="sub-word">Do you know him?</a><br />
+        <button id="H1btn16" class="control">00:46</button><br /><a class="sub-word">Yeah. He's Yuki's cousin.</a><br />
+        <button id="H1btn17" class="control">00:49</button><br /><a class="sub-word">How tall is he?</a><br />
+        <button id="H1btn18" class="control">00:51</button><br /><a class="sub-word">He's one hundred and eighty centimeters tall.</a><br />
+        <button id="H1btn19" class="control">00:55</button><br /><a class="sub-word">Wow! He's very tall.</a><br />
+        <button id="H1btn20" class="control">00:57</button><br /><a class="sub-word">You can say that again!</a><br />
+        <button id="H1btn21" class="control">00:59</button><br /><a class="sub-word">Does he play sports?</a><br />
+        <button id="H1btn22" class="control">01:01</button><br /><a class="sub-word">Yes. He is also on the school basketball team.</a><br />
+        <button id="H1btn23" class="control">01:06</button><br /><a class="sub-word">What does Shin do in his free time?</a><br />
+        <button id="H1btn24" class="control">01:09</button><br /><a class="sub-word">He writes songs or plays music.</a><br />
+        <button id="H1btn25" class="control">01:12</button><br /><a class="sub-word">He's good at the guitar and the piano.</a><br />
+    </div>
+</div>
+
+
+{% endblock %}

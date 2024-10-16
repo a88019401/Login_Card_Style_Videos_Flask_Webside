@@ -1,0 +1,113 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+QUIZ :)
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<!--參考出自https://www.youtube.com/watch?v=C7NsIRhoWuE&ab_channel=KevinBriggs-->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/video_b2.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/k2u2videoAndCaption_botton.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz_main.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">國中英語影片</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                <li><a href="#">當前使用者: {{ name }}</a></li>
+                <li><a href="{{ url_for('logout') }}">登出</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<h1>歡迎光臨，請逐一按下字幕按鈕，練習對話。</h1>
+
+
+<div id="quiz" name="quiz">
+    <div>
+        <div class="allVideo">
+            <video controls id="video" poster="">
+                <source src="{{ url_for('static', filename='video/KSB2U2Conversation.mp4') }}" type="video/mp4" />
+                <source src="" type="video/webm" />
+                <source src="" type="video/ogg" />
+                <source src="" type="video/3gp" />
+                <!--<track  default src="./video/KHB3L1.srt" kind="subtitle" srclang="en-US" label="English" /> -->
+
+                <track default src="{{ url_for('static', filename='video/KSB2U2Conversation.vtt') }}" kind="captions" srclang="en"
+                    label="English Captions" />
+
+                <p><a href="" download>Download the Video</a></p>
+            </video><br />
+
+            <!--<button id="btnPlay" class="control">Play</button><br/>
+        <button id="btnPaws" class="control">Pause</button><br/>
+        <button id="btnStop" class="control">Stop</button><br/>
+        <button id="btnRew" class="control">Rewind</button><br/>
+        <button id="btnFF" class="control">Fast-to</button><br/>-->
+        </div>
+
+
+
+    </div>
+
+    <input id="button" type="button" value="I'm finished!" onclick="javascript:location.href='./index_login'">
+</div>
+
+<div id="before_submit">
+    <div class="caption">
+        <!--target="_blank" 另開視窗 -->
+        <button id="btn1" class="control">00:05</button><br /><a class="sub-word">You're late again!</a><br />
+        <button id="btn2" class="control">00:07</button><br /><a class="sub-word">I'm very sorry.</a><br />
+        <button id="btn3" class="control">00:08</button><br /><a class="sub-word">It's because of my brother.</a><br />
+        <button id="btn4" class="control">00:10</button><br /><a class="sub-word">What do you mean?</a><br />
+        <button id="btn5" class="control">00:11</button><br /><a class="sub-word">My brother and I share a bathroom.</a><br />
+        <button id="btn6" class="control">00:15</button><br /><a class="sub-word">He uses it for almost an hour every morning.</a><br />
+        <button id="btn7" class="control">00:19</button><br /><a class="sub-word">What is he doing there?</a><br />
+        <button id="btn8" class="control">00:21</button><br /><a class="sub-word">He brushes his teeth, washes his face and showers.</a><br />
+        <button id="btn9" class="control">00:27</button><br /><a class="sub-word">Wait a moment!</a><br />
+        <button id="btn10" class="control">00:28</button><br /><a class="sub-word">Take a shower? </a><br />
+        <button id="btn11" class="control">00:29</button><br /><a class="sub-word">Does he exercise in the morning?</a><br />
+        <button id="btn12" class="control">00:32</button><br /><a class="sub-word">Yes, he is.</a><br />
+        <button id="btn13" class="control">00:34</button><br /><a class="sub-word">He jogs every morning.</a><br />
+        <button id="btn14" class="control">00:36</button><br /><a class="sub-word">Then he used the bathroom for almost an hour.</a><br />
+        <button id="btn15" class="control">00:46</button><br /><a class="sub-word">I got it.</a><br />
+        <button id="btn16" class="control">00:47</button><br /><a class="sub-word">What time does he go to school?</a><br />
+        <button id="btn17" class="control">00:50</button><br /><a class="sub-word">Seven o'clock sharp.</a><br />
+        <button id="btn18" class="control">00:52</button><br /><a class="sub-word">He has class at eight o'clock.</a><br />
+        <button id="btn19" class="control">00:54</button><br /><a class="sub-word">I know! </a><br />
+        <button id="btn20" class="control">00:56</button><br /><a class="sub-word">You can get up at five to use the bathroom.</a><br />
+        <button id="btn21" class="control">01:00</button><br /><a class="sub-word">Oh, forget it.</a><br />
+        <button id="btn22" class="control">01:01</button><br /><a class="sub-word">Forgive me.</a><br />
+    </div>
+</div>
+
+
+
+{% endblock %}

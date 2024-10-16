@@ -1,0 +1,114 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+QUIZ :)
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<!--參考出自https://www.youtube.com/watch?v=C7NsIRhoWuE&ab_channel=KevinBriggs-->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/video_b2.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/k2u1videoAndCaption_botton.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz_main.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">國中英語影片</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                <li><a href="#">當前使用者: {{ name }}</a></li>
+                <li><a href="{{ url_for('logout') }}">登出</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<h1>歡迎光臨，請逐一按下字幕按鈕，練習對話。</h1>
+
+
+<div id="quiz" name="quiz">
+    <div>
+        <div class="allVideo">
+            <video controls id="video" poster="">
+                <source src="{{ url_for('static', filename='video/KSB2U1Conversation.mp4') }}" type="video/mp4" />
+                <source src="" type="video/webm" />
+                <source src="" type="video/ogg" />
+                <source src="" type="video/3gp" />
+                <!--<track  default src="./video/KHB3L1.srt" kind="subtitle" srclang="en-US" label="English" /> -->
+
+                <track default src="{{ url_for('static', filename='video/KSB2U1Conversation.vtt') }}" kind="captions" srclang="en"
+                    label="English Captions" />
+
+                <p><a href="" download>Download the Video</a></p>
+            </video><br />
+
+            <!--<button id="btnPlay" class="control">Play</button><br/>
+        <button id="btnPaws" class="control">Pause</button><br/>
+        <button id="btnStop" class="control">Stop</button><br/>
+        <button id="btnRew" class="control">Rewind</button><br/>
+        <button id="btnFF" class="control">Fast-to</button><br/>-->
+        </div>
+
+
+
+    </div>
+
+    <input id="button" type="button" value="I'm finished!" onclick="javascript:location.href='./index_login'">
+</div>
+
+<div id="before_submit">
+    <div class="caption">
+        <!--target="_blank" 另開視窗 -->
+        <button id="btn1" class="control">00:04</button><br /><a class="sub-word">Do you practice basketball every day after school?</a><br />
+        <button id="btn2" class="control">00:08</button><br /><a class="sub-word">Yes, I do.</a><br />
+        <button id="btn3" class="control">00:10</button><br /><a class="sub-word">I'm on the basketball varsity team.</a><br />
+        <button id="btn4" class="control">00:12</button><br /><a class="sub-word">I like basketball, but I can't play it every day.</a><br />
+        <button id="btn5" class="control">00:17</button><br /><a class="sub-word">I am worried about my grades.</a><br />
+        <button id="btn6" class="control">00:20</button><br /><a class="sub-word">I have many exams.</a><br />
+        <button id="btn7" class="control">00:22</button><br /><a class="sub-word">I play basketball every day and I also worry about my grades.</a><br />
+        <button id="btn8" class="control">00:28</button><br /><a class="sub-word">Really? </a><br />
+        <button id="btn9" class="control">00:30</button><br /><a class="sub-word">Yes.  I can only read and prepare for exams at night.</a><br />
+        <button id="btn10" class="control">00:34</button><br /><a class="sub-word">I don't have time to watch TV.</a><br />
+        <button id="btn11" class="control">00:37</button><br /><a class="sub-word">I also don't have time to play video games.</a><br />
+        <button id="btn12" class="control">00:41</button><br /><a class="sub-word">Wow, that must be hard work.</a><br />
+        <button id="btn13" class="control">00:44</button><br /><a class="sub-word">Are you enjoying your life?</a><br />
+        <button id="btn14" class="control">00:46</button><br /><a class="sub-word">Of course.  Basketball is my life.</a><br />
+        <button id="btn15" class="control">00:58</button><br /><a class="sub-word">So what do you do on weekends?</a><br />
+        <button id="btn16" class="control">01:01</button><br /><a class="sub-word">I read and watch basketball games with my friends.</a><br />
+        <button id="btn17" class="control">01:05</button><br /><a class="sub-word">Me too.</a><br />
+        <button id="btn18" class="control">01:07</button><br /><a class="sub-word">Hey!  I have two tickets to the basketball game this Sunday.</a><br />
+        <button id="btn19" class="control">01:12</button><br /><a class="sub-word">Let's go together.</a><br />
+        <button id="btn20" class="control">01:14</button><br /><a class="sub-word">Well, how much are the tickets?</a><br />
+        <button id="btn21" class="control">01:17</button><br /><a class="sub-word">It's two hundred dollars.</a><br />
+        <button id="btn22" class="control">01:19</button><br /><a class="sub-word">Do not worry.  Count me.</a><br />
+        <button id="btn23" class="control">01:22</button><br /><a class="sub-word">So cool!  Thanks.</a><br />
+    </div>
+</div>
+
+
+
+{% endblock %}

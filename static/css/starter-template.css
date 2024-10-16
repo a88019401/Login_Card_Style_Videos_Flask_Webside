@@ -1,0 +1,107 @@
+/*影片排版
+參考 https://www.youtube.com/watch?v=bR5pmwNajjQ&ab_channel=Mr.WebDesigner*/
+
+/* 基本樣式保持不變 */
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/* 影片容器 - Flexbox布局 */
+.video-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* 影片卡片樣式 */
+.video-container .video {
+  height: 15rem;
+  width: 100%;
+  max-width: 25rem;
+  margin: 2rem;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+  overflow: hidden;
+  border-radius: 1rem;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 影片卡片中的影片樣式 */
+.video-container .video video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 當滑過影片時的動畫效果 */
+.video-container .video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 .8rem 1.5rem rgba(0, 0, 0, .7);
+}
+
+/* 標題樣式 */
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+/* 響應式設計 - 不同螢幕大小的調整 */
+@media (min-width: 768px) {
+  .video-container .video {
+    width: 22rem;
+    height: 14rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-container .video {
+    width: 25rem;
+    height: 15rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 針對手機裝置的特別調整 */
+@media (max-width: 576px) {
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-container .video {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}

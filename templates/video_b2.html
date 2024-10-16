@@ -1,0 +1,199 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+QUIZ :)
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<!--參考出自https://www.youtube.com/watch?v=C7NsIRhoWuE&ab_channel=KevinBriggs-->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/video_b2.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/videoAndCaption_botton.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">國中英語影片</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                <li><a href="#">當前使用者: {{ name }}</a></li>
+                <li><a href="{{ url_for('logout') }}">登出</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<h1>歡迎光臨 {{ name }}，請逐一按下字幕按鈕，練習對話。</h1>
+
+
+<div id="quiz" name="quiz">
+    <div>
+        <div class="allVideo">
+            <video controls id="video" poster="">
+                <source src="{{ url_for('static', filename='video/KHB3L1.mp4') }}" type="video/mp4" />
+                <source src="" type="video/webm" />
+                <source src="" type="video/ogg" />
+                <source src="" type="video/3gp" />
+                <!--<track  default src="./video/KHB3L1.srt" kind="subtitle" srclang="en-US" label="English" /> -->
+
+                <track default src="{{ url_for('static', filename='video/KHB3L1.vtt') }}" kind="captions" srclang="en"
+                    label="English Captions" />
+
+                <p><a href="" download>Download the Video</a></p>
+            </video><br />
+
+            <!--<button id="btnPlay" class="control">Play</button><br/>
+        <button id="btnPaws" class="control">Pause</button><br/>
+        <button id="btnStop" class="control">Stop</button><br/>
+        <button id="btnRew" class="control">Rewind</button><br/>
+        <button id="btnFF" class="control">Fast-to</button><br/>-->
+        </div>
+
+
+
+    </div>
+
+    <input id="button" type="button" value="I'm finished!" onclick="javascript:location.href='./index_login'">
+</div>
+
+<div id="before_submit">
+    <div class="caption">
+        <button id="btn1" class="control">00:03</button><br />
+        <a title="嗨" class="sub-word">Hey</a><a title="逗號" class="sub-word">,</a>
+        <a title="瑞塔(女生名)" class="sub-word">Rita</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn2" class="control">00:04</button><br />
+        <a title="我" class="sub-word">I</a> <a title="剛剛" class="sub-word">just</a>
+        <a title="檢查" class="sub-word">checked</a> <a title="你的" class="sub-word">your</a>
+        <a title="Instagram" class="sub-word">Instagram</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn3" class="control">00:07</button><br />
+        <a title="你" class="sub-word">Did</a> <a title="去" class="sub-word">go</a> 
+        <a title="到" class="sub-word">to</a> <a title="台東" class="sub-word">Taitung</a> 
+        <a title="這個" class="sub-word">this</a> <a title="夏天" class="sub-word">summer</a> 
+        <a title="假期" class="sub-word">vacation</a><a title="問號" class="sub-word">?</a><br />
+        
+        <button id="btn4" class="control">00:10</button><br />
+        <a title="是" class="sub-word">Yes</a><a title="句號" class="sub-word">,</a> 
+        <a title="我" class="sub-word">I</a> <a title="有" class="sub-word">did</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn5" class="control">00:12</button><br />
+        <a title="我的" class="sub-word">My</a> <a title="家人" class="sub-word">family</a> 
+        <a title="和" class="sub-word">and</a> <a title="我" class="sub-word">I</a> 
+        <a title="到訪" class="sub-word">visited</a> <a title="我的" class="sub-word">my</a> 
+        <a title="叔叔" class="sub-word">uncle</a> <a title="那裡" class="sub-word">there</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn6" class="control">00:16</button><br />
+        <a title="酷" class="sub-word">Cool</a><a title="驚嘆號" class="sub-word">!</a><br />
+        
+        <button id="btn7" class="control">00:17</button><br />
+        <a title="你" class="sub-word">Did</a> <a title="去" class="sub-word">go</a> 
+        <a title="到" class="sub-word">to</a> <a title="海灘" class="sub-word">the beach</a>?<br />
+        
+        <button id="btn8" class="control">00:19</button><br />
+        <a title="是" class="sub-word">Yes</a><a title="句號" class="sub-word">,</a> 
+        <a title="我們" class="sub-word">we</a> <a title="有" class="sub-word">did</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn9" class="control">00:20</button><br />
+        <a title="那裡" class="sub-word">The</a> <a title="水" class="sub-word">water</a> 
+        <a title="那裡" class="sub-word">there</a> <a title="是" class="sub-word">was</a> 
+        <a title="藍色" class="sub-word">blue</a> <a title="和" class="sub-word">and</a> 
+        <a title="乾淨" class="sub-word">clean</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn10" class="control">00:24</button><br />
+        <a title="我們" class="sub-word">We</a> <a title="幾乎" class="sub-word">went</a> 
+        <a title="到" class="sub-word">to</a> <a title="海灘" class="sub-word">the beach</a> 
+        <a title="幾乎" class="sub-word">almost</a> <a title="每一天" class="sub-word">every day</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn11" class="control">00:27</button><br />
+        <a title="還有什麼" class="sub-word">What else</a> <a title="做" class="sub-word">did</a> 
+        <a title="你" class="sub-word">you</a> <a title="做" class="sub-word">do</a> <a title="那裡" class="sub-word">there</a>?<br />
+        
+        <button id="btn12" class="control">00:30</button><br />
+        <a title="我們" class="sub-word">We</a> <a title="去" class="sub-word">went</a> 
+        <a title="到" class="sub-word">a</a> <a title="熱氣球" class="sub-word">hot air balloon</a> 
+        <a title="節" class="sub-word">festival</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn13" class="control">00:33</button><br />
+        <a title="那個" class="sub-word">It</a> <a title="是" class="sub-word">was</a> 
+        <a title="有趣" class="sub-word">fun</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn14" class="control">00:35</button><br />
+        <a title="好" class="sub-word">Nice</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn15" class="control">00:37</button><br />
+        <a title="什麼" class="sub-word">What</a> <a title="關於" class="sub-word">about</a> 
+        <a title="你" class="sub-word">you</a>?<br />
+        
+        <button id="btn16" class="control">00:38</button><br />
+        <a title="你" class="sub-word">Did</a> <a title="享受" class="sub-word">enjoy</a> 
+        <a title="你的" class="sub-word">your</a> <a title="假期" class="sub-word">vacation</a>?<br />
+        
+        <button id="btn17" class="control">00:40</button><br />
+        <a title="是" class="sub-word">Yes</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn18" class="control">00:41</button><br />
+        <a title="我" class="sub-word">I</a> <a title="去" class="sub-word">went</a> 
+        <a title="到" class="sub-word">Lukang</a> <a title="並且" class="sub-word">and</a> 
+        <a title="享受" class="sub-word">enjoyed</a> <a title="我的" class="sub-word">my</a> 
+        <a title="停留" class="sub-word">stay</a> <a title="那裡" class="sub-word">there</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn19" class="control">00:45</button><br />
+        <a title="鹿港" class="sub-word">Lukang</a><a title="問號" class="sub-word">?</a><br />
+        
+        <button id="btn20" class="control">00:47</button><br />
+        <a title="什麼" class="sub-word">What</a> <a title="做" class="sub-word">did</a> 
+        <a title="你" class="sub-word">do</a> <a title="那裡" class="sub-word">there</a>?<br />
+        
+        <button id="btn21" class="control">00:49</button><br />
+        <a title="我" class="sub-word">I</a> <a title="參加" class="sub-word">joined</a> 
+        <a title="一個" class="sub-word">a</a> <a title="夏令營" class="sub-word">summer camp</a> 
+        <a title="並且" class="sub-word">and</a> <a title="學習" class="sub-word">learned</a> 
+        <a title="關於" class="sub-word">about</a> <a title="這個" class="sub-word">the</a> 
+        <a title="城鎮" class="sub-word">history</a> <a title="的" class="sub-word">of</a> 
+        <a title="這個" class="sub-word">the</a> <a title="城鎮" class="sub-word">town</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn22" class="control">00:53</button><br />
+        <a title="我" class="sub-word">I</a> <a title="分享" class="sub-word">shared</a> 
+        <a title="舊的" class="sub-word">old</a> <a title="故事" class="sub-word">stories</a> 
+        <a title="關於" class="sub-word">about</a> <a title="這個" class="sub-word">the</a> 
+        <a title="城鎮" class="sub-word">town</a> <a title="與" class="sub-word">with</a> 
+        <a title="訪客" class="sub-word">visitors</a> <a title="在" class="sub-word">at</a> 
+        <a title="寺廟" class="sub-word">the temples</a><a title="句號" class="sub-word">.</a><br />
+        
+        <button id="btn23" class="control">00:58</button><br />
+        <a title="你" class="sub-word">You</a> <a title="告訴" class="sub-word">told</a> 
+        <a title="故事" class="sub-word">stories</a> <a title="關於" class="sub-word">about</a> 
+        <a title="這個" class="sub-word">the</a> <a title="城鎮" class="sub-word">town</a>?<br />
+        
+        <button id="btn24" class="control">01:01</button><br />
+        <a title="那真" class="sub-word">That’s</a> <a title="真的" class="sub-word">really</a> 
+        <a title="有趣" class="sub-word">interesting</a><a title="句號" class="sub-word">.</a><br />
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+QUIZ :)
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<!--參考出自https://www.youtube.com/watch?v=C7NsIRhoWuE&ab_channel=KevinBriggs-->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/video_b2.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/h2u2videoAndCaption_botton.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz_main.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">國中英語影片</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                <li><a href="#">當前使用者: {{ name }}</a></li>
+                <li><a href="{{ url_for('logout') }}">登出</a></li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<h1>歡迎光臨，請逐一按下字幕按鈕，練習對話。</h1>
+
+
+<div id="quiz" name="quiz">
+    <div>
+        <div class="allVideo">
+            <video controls id="video" poster="">
+                <source src="{{ url_for('static', filename='video/HLB2U2Conversation.mp4') }}" type="video/mp4" />
+                <source src="" type="video/webm" />
+                <source src="" type="video/ogg" />
+                <source src="" type="video/3gp" />
+                <!--<track  default src="./video/KHB3L1.srt" kind="subtitle" srclang="en-US" label="English" /> -->
+
+                <!--<track default src="{{ url_for('static', filename='video/KHB3L1.vtt') }}" kind="captions" srclang="en"
+                    label="English Captions" />-->
+
+                <p><a href="" download>Download the Video</a></p>
+            </video><br />
+
+            <!--<button id="btnPlay" class="control">Play</button><br/>
+        <button id="btnPaws" class="control">Pause</button><br/>
+        <button id="btnStop" class="control">Stop</button><br/>
+        <button id="btnRew" class="control">Rewind</button><br/>
+        <button id="btnFF" class="control">Fast-to</button><br/>-->
+        </div>
+
+
+
+    </div>
+
+    <input id="button" type="button" value="I'm finished!" onclick="javascript:location.href='./index_login'">
+</div>
+
+<div id="before_submit">
+    <div class="caption">
+        <!--target="_blank" 另開視窗 -->        
+        <button id="H2btn1" class="control">00:06</button><br /><a class="sub-word">Good morning, Yuki. You're an early bird.</a><br />
+        <button id="H2btn2" class="control">00:11</button><br /><a class="sub-word">Not me. My dog, Oreo, is the early bird. He usually wakes me up before six. Are you a
+            morning person?</a><br />
+        <button id="H2btn3" class="control">00:22</button><br /><a class="sub-word">Yes. I wake up at five every day.</a><br />
+        <button id="H2btn4" class="control">00:27</button><br /><a class="sub-word">Good for you. I usually get up at seven. Sometimes, I get up after seven twenty.</a><br />
+        <button id="H2btn5" class="control">00:35</button><br /><a class="sub-word">Wow, that's late. What time do you usually go to bed?</a><br />
+        <button id="H2btn6" class="control">00:41</button><br /><a class="sub-word">At twelve.</a><br />
+        <button id="H2btn7" class="control">00:43</button><br /><a class="sub-word">Twelve? How come? What do you do after school?</a><br />
+        <button id="H2btn8" class="control">00:48</button><br /><a class="sub-word">I'm at cram school from six to nine. Then I go home and do my homework for two hours. I don't have much free time.</a><br />
+        <button id="H2btn9" class="control">00:58</button><br /><a class="sub-word">That's too bad.</a><br />
+        <button id="H2btn10" class="control">00:59</button><br /><a class="sub-word">I'm always tired in the morning. What can I do?</a><br />
+        <button id="H2btn11" class="control">01:05</button><br /><a class="sub-word">A shower can help. I often take a shower in the morning.</a><br />
+        <button id="H2btn12" class="control">01:09</button><br /><a class="sub-word">Really? I never do that. By the way, where are you going?</a><br />
+        <button id="H2btn13" class="control">01:15</button><br /><a class="sub-word">To the library.</a><br />
+        <button id="H2btn14" class="control">01:18</button><br /><a class="sub-word">Library? How often do you go there?</a><br />
+        <button id="H2btn15" class="control">01:22</button><br /><a class="sub-word">I check out books from the library three times a month.</a><br />
+        <button id="H2btn16" class="control">01:26</button><br /><a class="sub-word">What a bookworm! I go there about once or twice a year.</a><br />
+            </a><br />
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
