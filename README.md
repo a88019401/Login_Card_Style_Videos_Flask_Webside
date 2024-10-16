@@ -1,5 +1,6 @@
 #2024/10/17
-`刪掉原本串接的Azure，調整一下index、login和signup的CSS。目前這網頁就是一個有登入系統的影片，flask+簡易的帳密資料庫，也不知道能延伸什麼，下次嘗試部屬看看。`
+`刪掉原本串接的Azure，調整一下index、login和signup的CSS。目前這網頁就是一個有登入系統的影片，flask+簡易的帳密資料庫，也不知道能延伸什麼，下次嘗試部屬看看。 https://tutorial.helloflask.com/deploy/`
+
 
 1. cd UNVERSITY_PROJETCT_REOPEN_SPEECH_TEST
    \\activate your virtualenv\\
