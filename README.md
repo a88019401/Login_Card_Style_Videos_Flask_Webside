@@ -2,7 +2,9 @@
 
 目前這網頁就是一個有登入系統的影片網站，flask+簡易的帳密資料庫。
 是我當初大學專題的雛型，有喜歡的人歡迎抄去用。XD
-
+![image](https://github.com/a88019401/Login_Card_Style_Videos_Flask_Webside/blob/main/1.png)
+![image](https://github.com/a88019401/Login_Card_Style_Videos_Flask_Webside/blob/main/2.png)
+![image](https://github.com/a88019401/Login_Card_Style_Videos_Flask_Webside/blob/main/3.png)
 
 1. cd UNVERSITY_PROJETCT_REOPEN_SPEECH_TEST
    \\activate your virtualenv\\
